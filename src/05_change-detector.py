@@ -3,7 +3,7 @@ import os
 import requests
 
 BASE = "http://localhost:58000/api/v1"
-ARCHIVO = "foto_red.json"
+ARCHIVO = "snapshot_red.json"
 
 # Obtenemos nuevo ticket
 headers = {"Content-Type": "application/json"}
@@ -35,10 +35,10 @@ if os.path.exists(ARCHIVO):
     print("DESAPARECIDOS:", perdidos or "ninguno")
     print("CON IP DISTINTA:", cambiados or "ninguno")
 else:
-    print("Primera ejecución: se guarda la foto inicial.")
+    print("Primera ejecución: se guarda la snapshot inicial.")
 
 # Guardamos los equipos actuales
 with open(ARCHIVO, "w", encoding="utf-8") as f:
     json.dump(actual, f, indent=2, ensure_ascii=False)
 
-print(f"Foto guardada: {len(actual)} elementos")
+print(f"Snapshot guardada: {len(actual)} elementos")

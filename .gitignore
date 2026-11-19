@@ -1,3 +1,7 @@
 cisco/
 venv/
-env/
+__pycache__/
+*.pyc
+.env
+.venv/
+snapshot_red.json

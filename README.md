@@ -1,3 +1,57 @@
+# API de Python para redes Cisco (Packet Tracer)
+
+Scripts en Python para consultar la API REST del Network Controller de Cisco Packet Tracer (TP N° 4 Integrador de Redes de Computadoras).
+
+Incluye los scripts suministrados por la cátedra y un script propio (`05_change-detector.py`).
+
+## Requisitos
+
+- Python 3
+- Packet Tracer abierto, con el Network Controller activo y su API disponible en `http://localhost:58000`
+- Usuario y contraseña de la API configurados en el controlador (en los scripts: `cisco` / `cisco`)
+
+## Instalación
+
+```
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+## Scripts (carpeta `src/`)
+
+| Script | Qué hace |
+|---|---|
+| `01_get-ticket.py` | Se autentica contra la API y obtiene el *service ticket* (token) necesario para las demás consultas. |
+| `02_get-network-device.py` | Consulta `/network-device` y muestra los equipos de red que ve el controlador: hostname, plataforma e IP de administración. |
+| `03_get-host.py` | Consulta `/host` y muestra los hosts de la red: nombre, IP, MAC e interfaz a la que están conectados. |
+| `04_tabulate.py` | Pide el ticket, consulta equipos y hosts, y los muestra en tablas ordenadas usando la biblioteca `tabulate`. |
+| `05_change-detector.py` | **Script propio.** Detector de cambios: guarda una "foto" de los equipos y hosts que ve el controlador (`foto_red.json`) y, en cada ejecución, la compara con la anterior para informar qué elementos son nuevos, cuáles desaparecieron y cuáles cambiaron de IP. |
+
+## Uso
+
+Con el entorno virtual activado, ejecutar desde la raíz del repositorio:
+
+```
+python src/01_get-ticket.py
+python src/02_get-network-device.py
+python src/03_get-host.py
+python src/04_tabulate.py
+python src/05_change-detector.py
+```
+
+Los scripts 01 a 04 son los suministrados.
+
+### Cómo probar el script 05
+
+1. Ejecutarlo una vez: guarda la foto inicial de la red.
+2. Hacer un cambio en Packet Tracer (por ejemplo, desconectar o agregar un host).
+3. Volver a ejecutarlo: muestra los elementos nuevos, desaparecidos o con IP distinta.
+
+## Autores
+
+Grupo 11
+
 # Entorno de virtualización Python
 
 # Pasos de instalación en Linux:
